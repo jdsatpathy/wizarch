@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="JD Satapathy — Data Architect with 13+ years of experience in distributed data platforms, real-time pipelines, and cloud-native architectures. Builder of practical AI products." />
+  <meta name="author" content="JD Satapathy" />
+  <meta property="og:title" content="Wizarch — Data Architecture & Applied AI" />
+  <meta property="og:description" content="Designing scalable data systems and building practical AI products." />
+  <meta property="og:type" content="website" />
+  <title>Wizarch — Data Architecture &amp; Applied AI</title>
+  <link rel="icon" type="image/svg+xml" href="public/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════
+       NAV
+  ══════════════════════════════════════════════════ -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">Wiz<span>arch</span></a>
+      <ul class="nav__links">
+        <li><a href="#what-i-do">Expertise</a></li>
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#insights">Insights</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <a href="https://calendly.com/jdsatpathy/30min" class="nav__cta" target="_blank" rel="noopener">Book a Call</a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__badge">Available for consulting</div>
+
+      <h1>Designing Scalable Data Systems &amp; Building Practical AI Products</h1>
+
+      <p class="hero__sub">
+        Data Architect with 13+ years of experience in distributed data platforms,
+        real-time pipelines, and cloud-native architectures. I build systems that scale —
+        and tools that solve real-world problems.
+      </p>
+
+      <div class="hero__actions">
+        <a href="#projects" id="explore-work-btn" class="btn btn--primary">Explore My Work</a>
+        <a href="products.html" id="view-products-btn" class="btn btn--outline">View Products →</a>
+      </div>
+
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <strong>13+</strong>
+          <span>Years of experience</span>
+        </div>
+        <div class="hero__stat">
+          <strong>50+</strong>
+          <span>Data systems delivered</span>
+        </div>
+        <div class="hero__stat">
+          <strong>100%</strong>
+          <span>SLA adherence track record</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       WHAT I DO
+  ══════════════════════════════════════════════════ -->
+  <section id="what-i-do" class="what-i-do">
+    <div class="container">
+      <p class="section-label">Expertise</p>
+      <h2 class="section-title">What I Do</h2>
+
+      <div class="grid-3">
+
+        <div class="card-plain">
+          <div class="card-plain__icon">🏗️</div>
+          <h3>Data Architecture</h3>
+          <p>
+            Design scalable batch and streaming systems using Spark, Kafka,
+            Iceberg, and modern lakehouse architectures across cloud platforms.
+          </p>
+        </div>
+
+        <div class="card-plain">
+          <div class="card-plain__icon">🚀</div>
+          <h3>Engineering Leadership</h3>
+          <p>
+            Define engineering standards, CI/CD pipelines, and lead teams
+            delivering production-grade data platforms with high reliability.
+          </p>
+        </div>
+
+        <div class="card-plain">
+          <div class="card-plain__icon">🤖</div>
+          <h3>Applied AI Products</h3>
+          <p>
+            Build practical AI tools that automate real workflows —
+            from hiring intelligence to data-driven decision systems.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       FEATURED PRODUCT
+
+       HOW TO ADD A NEW FEATURED PRODUCT
+       ───────────────────────────────────
+       1. Copy the block between FEATURED PRODUCT CARD START … END below.
+       2. Paste it as a new <div class="product-card"> inside this <section>.
+          (Only one card is shown at a time; consider showing the latest one.)
+       3. Update these fields in your copy:
+          • .product-card__label  → category label      (e.g. "Data Tool")
+          • h3                    → product name
+          • p                     → short description
+          • li × 2-3              → feature bullets
+          • id="try-*-btn"        → unique button ID     (e.g. "try-dataflow-btn")
+          • href on primary CTA   → live product URL
+          • CTA button text       → call-to-action label
+          • The ⚡ emoji in the right column can be replaced with any
+            icon, image, or stat you like.
+       4. For a full product detail page, see products.html instead —
+          it supports snapshots and richer cards.
+  ══════════════════════════════════════════════════ -->
+  <section class="featured">
+    <div class="container">
+      <p class="section-label">Featured Product</p>
+      <h2 class="section-title">What I've Built</h2>
+
+      <!-- ─────────────────────────────────────────────
+           FEATURED PRODUCT CARD START  →  recruitai
+      ───────────────────────────────────────────── -->
+      <div class="product-card">
+        <div>
+          <p class="product-card__label">AI Product</p>
+          <h3>RecruitAI</h3>
+          <p>
+            AI-powered resume screener that evaluates and ranks candidates against
+            job descriptions with structured scoring, strengths &amp; gaps analysis,
+            and hiring recommendations.
+          </p>
+
+          <ul class="product-card__features">
+            <li>Candidate ranking with scoring logic</li>
+            <li>Strengths &amp; gap analysis per candidate</li>
+            <li>Role-fit assessment for data engineering roles</li>
+          </ul>
+
+          <div class="product-card__actions">
+            <a href="https://recruitai.wizarch.org" id="try-recruitai-btn" class="btn btn--white btn--sm">
+              Try RecruitAI →
+            </a>
+            <button id="sample-report-btn" class="btn btn--ghost btn--sm">See Sample Report</button>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem;position:relative;z-index:1;">
+          <span style="font-size:4rem;">⚡</span>
+        </div>
+      </div>
+      <!-- FEATURED PRODUCT CARD END  →  recruitai ── -->
+
+      <!--
+        ┌──────────────────────────────────────────────────────────────┐
+        │  PASTE YOUR NEXT FEATURED PRODUCT CARD BELOW THIS LINE       │
+        │  Copy the block above (FEATURED PRODUCT CARD START … END)    │
+        │  and update the fields listed in the section comment above.  │
+        └──────────────────────────────────────────────────────────────┘
+      -->
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SELECTED WORK
+  ══════════════════════════════════════════════════ -->
+  <section id="projects" class="projects">
+    <div class="container">
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Selected Work</h2>
+
+      <div class="grid-3">
+
+        <div class="project-card">
+          <span class="project-card__tag">Spark · Finance</span>
+          <h3>Data Platform Architecture</h3>
+          <p>
+            Led end-to-end architecture of a Spark-based reconciliation platform
+            handling financial data with strict SLA requirements.
+          </p>
+        </div>
+
+        <div class="project-card">
+          <span class="project-card__tag">Kafka · AWS Lambda</span>
+          <h3>Real-Time Pipelines</h3>
+          <p>
+            Built event-driven orchestration using Kafka-triggered AWS Lambda
+            controlling Airflow workflows with 100% SLA adherence.
+          </p>
+        </div>
+
+        <div class="project-card">
+          <span class="project-card__tag">DBT · Incremental</span>
+          <h3>Incremental Data Processing</h3>
+          <p>
+            Designed DBT-based incremental pipelines with attribute-level change
+            detection across millions of records.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       INSIGHTS
+  ══════════════════════════════════════════════════ -->
+  <section id="insights" class="insights">
+    <div class="container">
+      <p class="section-label">Blog</p>
+      <h2 class="section-title">Insights</h2>
+
+      <div class="grid-3">
+
+        <div class="insight-card">
+          <p class="insight-card__meta">Product · AI</p>
+          <h3>How I Built RecruitAI</h3>
+          <p>Turning resume screening into a structured decision system using LLMs and custom scoring logic.</p>
+          <span class="insight-card__arrow">Read more →</span>
+        </div>
+
+        <div class="insight-card">
+          <p class="insight-card__meta">Engineering · Spark</p>
+          <h3>Failures in Spark Systems</h3>
+          <p>Real production issues, root causes, and practical patterns to prevent them in large-scale pipelines.</p>
+          <span class="insight-card__arrow">Read more →</span>
+        </div>
+
+        <div class="insight-card">
+          <p class="insight-card__meta">Architecture</p>
+          <h3>Designing Data Pipelines</h3>
+          <p>Lessons from building large-scale batch &amp; streaming systems across manufacturing and finance domains.
+          </p>
+          <span class="insight-card__arrow">Read more →</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       ABOUT
+  ══════════════════════════════════════════════════ -->
+  <section id="about" class="about">
+    <div class="container--narrow">
+      <div class="about__avatar">JS</div>
+      <p class="section-label" style="text-align:center;">About Me</p>
+      <h2 class="section-title" style="text-align:center;">JD Satapathy</h2>
+      <p>
+        I'm a Data Architect with 13+ years of experience building and scaling distributed
+        data platforms across manufacturing and finance domains. My work focuses on designing
+        reliable, SLA-driven systems and applying AI to solve practical engineering problems.
+      </p>
+      <div class="about__chips">
+        <span class="chip">Apache Spark</span>
+        <span class="chip">Apache Kafka</span>
+        <span class="chip">AWS</span>
+        <span class="chip">Snowflake</span>
+        <span class="chip">DBT</span>
+        <span class="chip">Airflow</span>
+        <span class="chip">Python</span>
+        <span class="chip">Applied AI</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       CTA
+  ══════════════════════════════════════════════════ -->
+  <section class="cta">
+    <div class="container">
+      <h2>Let's Build Something Scalable</h2>
+      <p>Open to discussions on data architecture, system design, and applied AI.</p>
+
+      <!-- Calendly inline widget begin -->
+      <div class="calendly-inline-widget" data-url="https://calendly.com/jdsatpathy/30min"
+        style="min-width:320px;height:700px; padding-top: 2rem;"></div>
+      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      <!-- Calendly inline widget end -->
+
+      <div class="cta__actions">
+        <a href="https://calendly.com/jdsatpathy/30min" id="contact-btn" class="btn btn--primary" target="_blank" rel="noopener">Book a Call</a>
+        <a href="https://www.linkedin.com/in/JD-satapathy" id="linkedin-btn" class="btn btn--outline" target="_blank"
+          rel="noopener">
+          LinkedIn ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__copy">© 2025 JD Satapathy · Wizarch</p>
+      <ul class="footer__links">
+        <li><a href="https://calendly.com/jdsatpathy/30min" target="_blank" rel="noopener">Book a Call</a></li>
+        <li><a href="https://www.linkedin.com/in/jatadhari-satapathy" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="products.html">Products</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+
+</html>

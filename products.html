@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="AI-powered products built by Jatadhari Satapathy — including RecruitAI, a resume screening and candidate ranking tool." />
+  <title>Products — Wizarch</title>
+  <link rel="icon" type="image/svg+xml" href="public/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ── Page hero ─────────────────────────────────────── */
+    .products-hero {
+      padding: 4rem 0 3rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gray-500);
+      margin-bottom: 2rem;
+      transition: color var(--transition);
+    }
+
+    .back-link:hover {
+      color: var(--black);
+    }
+
+    /* ── Product card ──────────────────────────────────── */
+    /*
+     * HOW TO ADD A NEW PRODUCT
+     * ─────────────────────────
+     * 1. Take a screenshot of your product and save it to:
+     *      product_snapshots/<product-slug>.png
+     *
+     * 2. Copy the entire block between the dashes below
+     *    (<!-- PRODUCT CARD START --> … <!-- PRODUCT CARD END -->)
+     *    and paste it after the last card inside #products-grid.
+     *
+     * 3. Update these fields in your copy:
+     *    • data-product   → unique kebab-case ID  (e.g. "dataflow")
+     *    • .pc__badge     → category label         (e.g. "Data · Pipelines")
+     *    • .pc__icon      → emoji icon             (e.g. "🔄")
+     *    • h2             → product name
+     *    • p              → short description
+     *    • li × 3-4       → feature bullets
+     *    • img src        → path to your snapshot  (e.g. product_snapshots/dataflow.png)
+     *                       OPTIONAL — if the file is missing the snapshot column
+     *                       is automatically hidden; card reflows to single column.
+     *    • img alt        → descriptive alt text
+     *    • href on CTA    → live product URL
+     *    • CTA text       → button label
+     */
+
+    .products-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+      padding-bottom: 6rem;
+    }
+
+    /* Each card is a two-column row: info left, screenshot right */
+    .pc {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      border: 1px solid var(--gray-200);
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      transition: box-shadow var(--transition), border-color var(--transition);
+    }
+
+    .pc:hover {
+      border-color: var(--gray-400);
+      box-shadow: var(--shadow-md);
+    }
+
+
+    .pc__header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .pc__icon {
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .pc__badge {
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 2rem;
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    .pc h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      margin-bottom: 0.75rem;
+    }
+
+    .pc__desc {
+      font-size: 0.9375rem;
+      color: var(--gray-600);
+      line-height: 1.75;
+    }
+
+    .pc__features {
+      margin-top: 1.25rem;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .pc__features li {
+      font-size: 0.875rem;
+      color: var(--gray-700);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .pc__features li::before {
+      content: '✓';
+      flex-shrink: 0;
+      width: 1.125rem;
+      height: 1.125rem;
+      border-radius: 50%;
+      background: var(--black);
+      color: var(--white);
+      font-size: 0.6rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.1rem;
+    }
+
+    .pc__actions {
+      margin-top: 1.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    /* Right column — screenshot */
+    .pc__snapshot {
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid var(--gray-100);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+      line-height: 0;
+      /* remove inline gap below img */
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .pc:hover .pc__snapshot {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.14);
+    }
+
+    .pc__snapshot img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      border-radius: 1rem;
+    }
+
+    /* Alternating layout — even cards flip snapshot to the left */
+    .pc:nth-child(even) {
+      grid-template-columns: 1fr 1.4fr;
+    }
+
+    .pc:nth-child(even) .pc__info {
+      order: 2;
+    }
+
+    .pc:nth-child(even) .pc__snapshot {
+      order: 1;
+    }
+
+    /* ── No snapshot fallback ────────────────────────────
+       Added automatically via onerror when image is missing.
+       Card collapses to a single comfortable-width column.  */
+    .pc--no-snapshot {
+      grid-template-columns: 1fr !important;
+      max-width: 42rem;
+    }
+
+    /* ── Responsive ────────────────────────────────────── */
+    @media (max-width: 900px) {
+
+      .pc,
+      .pc:nth-child(even) {
+        grid-template-columns: 1fr;
+      }
+
+      .pc:nth-child(even) .pc__info,
+      .pc:nth-child(even) .pc__snapshot {
+        order: unset;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════
+       NAV
+  ══════════════════════════════════════════════════ -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">Wiz<span>arch</span></a>
+      <ul class="nav__links">
+        <li><a href="/#what-i-do">Expertise</a></li>
+        <li><a href="/#projects">Work</a></li>
+        <li><a href="/#insights">Insights</a></li>
+        <li><a href="/#about">About</a></li>
+      </ul>
+      <a href="https://calendly.com/jdsatpathy/30min" class="nav__cta" target="_blank" rel="noopener">Book a Call</a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════════ -->
+  <section class="products-hero">
+    <div class="container">
+      <a href="/" id="back-home-link" class="back-link">← Back to Home</a>
+      <p class="section-label">Products</p>
+      <h1 class="section-title" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.03em;">
+        AI-Powered Products
+      </h1>
+      <p style="font-size: 1.0625rem; color: var(--gray-600); max-width: 38rem; margin-top: 0.5rem;">
+        Practical tools built to solve real engineering and hiring challenges at scale.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       PRODUCTS
+       To add a new product: see the HOW TO ADD A NEW PRODUCT
+       comment in the <style> block above.
+  ══════════════════════════════════════════════════ -->
+  <div class="container">
+    <div id="products-grid" class="products-grid">
+
+      <!-- ─────────────────────────────────────────────
+           PRODUCT CARD START  →  recruitai
+      ───────────────────────────────────────────── -->
+      <article class="pc" data-product="recruitai">
+
+        <!-- Left: product info -->
+        <div class="pc__info">
+          <div class="pc__header">
+            <span class="pc__icon">🤖</span>
+            <span class="pc__badge">AI · Hiring</span>
+          </div>
+
+          <h2>RecruitAI</h2>
+
+          <p class="pc__desc">
+            AI-powered resume screener that evaluates and ranks candidates against
+            job descriptions with structured scoring, strengths &amp; gaps analysis,
+            and actionable hiring recommendations.
+          </p>
+
+          <ul class="pc__features">
+            <li>Candidate ranking with structured scoring logic</li>
+            <li>Strengths &amp; gap analysis per candidate</li>
+            <li>Role-fit assessment for data engineering roles</li>
+            <li>Exportable PDF reports</li>
+          </ul>
+
+          <div class="pc__actions">
+            <a href="https://recruitai.wizarch.org" id="recruitai-cta-btn" class="btn btn--primary btn--sm"
+              target="_blank" rel="noopener">
+              Try RecruitAI →
+            </a>
+            <button id="recruitai-sample-btn" class="btn btn--outline btn--sm">
+              Sample Report
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: screenshot (optional — remove this whole div if no snapshot) -->
+        <div class="pc__snapshot">
+          <img src="product_snapshots/recruitai.png"
+            alt="RecruitAI — Resume screener interface showing job description upload and candidate ranking"
+            loading="lazy"
+            onerror="this.closest('.pc__snapshot').remove(); this.closest('.pc').classList.add('pc--no-snapshot');" />
+        </div>
+
+      </article>
+      <!-- PRODUCT CARD END  →  recruitai ─────────── -->
+
+
+      <!--
+        ┌─────────────────────────────────────────────────────────────┐
+        │  PASTE YOUR NEXT PRODUCT CARD BELOW THIS LINE               │
+        │  Copy the block above (PRODUCT CARD START … END)            │
+        │  and update the 8 fields described in the style comment.    │
+        └─────────────────────────────────────────────────────────────┘
+      -->
+
+    </div><!-- /#products-grid -->
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__copy">© 2025 Jatadhari Satapathy · Wizarch</p>
+      <ul class="footer__links">
+        <li><a href="https://calendly.com/jdsatpathy/30min" target="_blank" rel="noopener">Book a Call</a></li>
+        <li><a href="https://www.linkedin.com/in/jatadhari-satapathy" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="/">Home</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+
+</html>
