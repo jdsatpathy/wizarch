@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="{{DESCRIPTION}}" />
+  <meta name="author" content="JD Satapathy" />
+  <meta property="og:title" content="{{TITLE}}" />
+  <meta property="og:description" content="{{DESCRIPTION}}" />
+  <meta property="og:type" content="article" />
+  <title>{{TITLE}}</title>
+  <link rel="icon" type="image/svg+xml" href="../public/favicon.svg" />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <!-- ══════════════════════════════════════════════════
+       NAV
+  ══════════════════════════════════════════════════ -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">Wiz<span>arch</span></a>
+      <ul class="nav__links">
+        <li><a href="#what-i-do">Expertise</a></li>
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#insights">Insights</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <a href="https://calendly.com/jdsatpathy/30min" class="nav__cta" target="_blank" rel="noopener">Book a Call</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <h1>{{TITLE}}</h1>
+      <p class="hero__sub">{{SUBHEADER}}</p>
+    </div>
+  </section>
+
+  <article class="post-content container">
+    {{CONTENT}}
+  </article>
+
+  <div class="container" style="text-align:center; margin-top:2rem;">
+    <a href="../index.html" class="btn btn--outline">← Back to Home</a>
+  </div>
+
+  <!-- Footer could be added here -->
+</body>
+</html>

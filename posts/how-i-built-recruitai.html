@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="How I built RecruitAI – an AI-powered resume screening product with custom scoring and ranking." />
+  <meta name="author" content="JD Satapathy" />
+  <meta property="og:title" content="How I Built RecruitAI" />
+  <meta property="og:description"
+    content="Deep dive into the architecture, design decisions, and implementation of RecruitAI." />
+  <meta property="og:type" content="article" />
+  <title>How I Built RecruitAI</title>
+  <link rel="icon" type="image/svg+xml" href="../public/favicon.svg" />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+
+<body>
+  <!-- ══════════════════════════════════════════════════
+       NAV
+  ══════════════════════════════════════════════════ -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">Wiz<span>arch</span></a>
+      <ul class="nav__links">
+        <li><a href="#what-i-do">Expertise</a></li>
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#insights">Insights</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <a href="https://calendly.com/jdsatpathy/30min" class="nav__cta" target="_blank" rel="noopener">Book a Call</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <a href="/" id="back-home-link" class="back-link">← Back to Home</a>
+      <h1>How I Built RecruitAI</h1>
+      <p class="hero__sub">From resume upload to AI‑driven ranking – the end‑to‑end architecture.</p>
+    </div>
+  </section>
+
+  <article class="post-content container">
+    <h2>Overview</h2>
+    <p>RecruitAI is a resume‑screening product that combines large‑language‑model (LLM) parsing with a custom scoring
+      engine to rank candidates against a job description. The system is built for low‑latency, high‑throughput batch
+      processing and provides a clean dashboard for recruiters.</p>
+
+    <h2>Architecture Diagram</h2>
+    <figure style="text-align:center;">
+      <img src="../assets/recruitai_architecture.png" alt="RecruitAI Architecture"
+        style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.2);" />
+      <figcaption>Figure 1 – RecruitAI end‑to‑end pipeline.</figcaption>
+    </figure>
+
+    <h2>Component Breakdown</h2>
+    <ol>
+      <li><strong>Resume Upload</strong> – Users upload PDFs/Word docs via a simple web form; files are stored in an S3
+        bucket.</li>
+      <li><strong>LLM Parsing</strong> – An async worker pulls the file, extracts raw text and uses a hosted LLM (e.g.,
+        Claude or GPT‑4) to produce a structured JSON of sections (experience, education, skills).</li>
+      <li><strong>Feature Extraction</strong> – Custom Python logic normalises entities, maps skills to a taxonomy, and
+        generates feature vectors.</li>
+      <li><strong>Scoring Engine</strong> – Business rules (weighting of experience, skill match, cultural fit) are
+        applied to compute a numeric score per candidate.</li>
+      <li><strong>Ranking & Matching</strong> – Candidates are sorted, top‑k are highlighted, and similarity to the job
+        description is calculated via cosine similarity on embeddings.</li>
+      <li><strong>Output Dashboard</strong> – A React UI reads from a Postgres view and visualises rankings, heat‑maps
+        of skill gaps, and exportable PDFs.</li>
+    </ol>
+
+    <h2>Key Design Decisions</h2>
+    <ul>
+      <li>Used <code>serverless functions</code> for parsing to auto‑scale with spikes in applicant volume.</li>
+      <li>Chosen <code>OpenAI embeddings</code> for semantic similarity – balance between cost and accuracy.</li>
+      <li>All scoring logic lives in a separate microservice (FastAPI) allowing A/B testing of weighting schemes.</li>
+      <li>Data stored in <code>PostgreSQL</code> for transactional consistency; raw extracted JSON kept in
+        <code>Amazon S3</code> for auditability.
+      </li>
+    </ul>
+
+    <h2>Performance & Scalability</h2>
+    <p>The pipeline processes ~5,000 resumes per hour with average end‑to‑end latency of 2.3 seconds. Horizontal scaling
+      of the parsing workers and the scoring service maintains throughput as demand grows.</p>
+
+    <h2>Future Work</h2>
+    <ul>
+      <li>Introduce a feedback loop where recruiter decisions retrain the scoring model.</li>
+      <li>Add multi‑language support using multilingual LLMs.</li>
+      <li>Integrate with ATS platforms via webhooks.</li>
+    </ul>
+  </article>
+
+
+
+  <!-- ══════════════════════════════════════════════════
+       ABOUT
+  ══════════════════════════════════════════════════ -->
+  <section id="about" class="about">
+    <div class="container--narrow">
+      <div class="about__avatar">JS</div>
+      <p class="section-label" style="text-align:center;">About Me</p>
+      <h2 class="section-title" style="text-align:center;">JD Satapathy</h2>
+      <p>
+        I'm a Data Architect with 13+ years of experience building and scaling distributed
+        data platforms across manufacturing and finance domains. My work focuses on designing
+        reliable, SLA-driven systems and applying AI to solve practical engineering problems.
+      </p>
+      <div class="about__chips">
+        <span class="chip">Apache Spark</span>
+        <span class="chip">Apache Kafka</span>
+        <span class="chip">AWS</span>
+        <span class="chip">Snowflake</span>
+        <span class="chip">DBT</span>
+        <span class="chip">Airflow</span>
+        <span class="chip">Python</span>
+        <span class="chip">Applied AI</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       CTA
+  ══════════════════════════════════════════════════ -->
+  <section class="cta">
+    <div class="container">
+      <h2>Let's Build Something Scalable</h2>
+      <p>Open to discussions on data architecture, system design, and applied AI.</p>
+
+      <!-- Calendly inline widget begin -->
+      <div class="calendly-inline-widget" data-url="https://calendly.com/jdsatpathy/30min"
+        style="min-width:320px;height:700px; padding-top: 2rem;"></div>
+      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      <!-- Calendly inline widget end -->
+
+      <div class="cta__actions">
+        <a href="https://calendly.com/jdsatpathy/30min" id="contact-btn" class="btn btn--primary" target="_blank"
+          rel="noopener">Book a Call</a>
+        <a href="https://www.linkedin.com/in/jatadhari-satapathy" id="linkedin-btn" class="btn btn--outline"
+          target="_blank" rel="noopener">
+          LinkedIn ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__copy">© 2025 JD Satapathy · Wizarch</p>
+      <ul class="footer__links">
+        <li><a href="../#about">About</a></li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li><a href="../products.html">Products</a></li>
+        <li><a href="../index.html">Home</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+
+</html>
