@@ -330,6 +330,48 @@
     </div>
   </footer>
 
+
+  <!-- ══════════════════════════════════════════════════
+       Chatbot UI Styling & Markup 
+  ══════════════════════════════════════════════════ -->
+  <div id="bedrock-chat-container"
+    style="display: flex; position: fixed; bottom: 20px; right: 20px; width: 360px; height: 500px; z-index: 10000; box-shadow: 0 4px 20px rgba(0,0,0,0.15); border-radius: 12px; background: #ffffff; font-family: system-ui, sans-serif; flex-direction: column; border: 1px solid #e1e4e8; transition: height 0.2s ease;">
+
+    <!-- Header -->
+    <div
+      style="background: #232f3e; color: white; padding: 15px; border-top-left-radius: 12px; border-top-right-radius: 12px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+      <span>Wizarch!!</span>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <!-- Minimize / Maximize Button -->
+        <button id="minimize-btn" onclick="toggleMinimize()"
+          style="background: none; border: none; color: white; cursor: pointer; font-size: 16px; line-height: 1; padding: 0 4px;">−</button>
+        <!-- Close Button -->
+        <button onclick="document.getElementById('bedrock-chat-container').style.display='none'"
+          style="background: none; border: none; color: white; cursor: pointer; font-size: 16px; line-height: 1; padding: 0 4px;">✕</button>
+      </div>
+    </div>
+
+    <!-- Collapsible Wrapper -->
+    <div id="chat-body" style="display: flex; flex-direction: column; flex: 1; overflow: hidden;">
+      <!-- Chat Area -->
+      <div id="chat-messages"
+        style="flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #f8f9fa;">
+        <div
+          style="background: #e9ecef; padding: 10px; border-radius: 8px; max-width: 80%; align-self: flex-start; font-size: 14px;">
+          Hi! I am an AI assistant created by JD. What do you want to know about him?
+        </div>
+      </div>
+      <!-- Input Bar -->
+      <div style="padding: 10px; border-top: 1px solid #e1e4e8; display: flex; gap: 8px; background: #ffffff;">
+        <input type="text" id="chat-input" placeholder="Ask something..."
+          style="flex: 1; padding: 8px 12px; border: 1px solid #ccc; border-radius: 20px; outline: none; font-size: 14px;">
+        <button id="send-btn"
+          style="background: #232f3e; color: white; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: bold;">Send</button>
+      </div>
+    </div>
+  </div>
+  <!-- Link to your new script file right before the closing </body> tag -->
+  <script src="chatbot.js"></script>
 </body>
 
 </html>
