@@ -1,0 +1,56 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Chatbot from '../components/Chatbot.astro';
+import { getExperienceText } from '../utils/experience';
+import '../styles/styles.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  currentPath?: string;
+}
+
+const experienceYears = getExperienceText();
+
+const {
+  title = "Wizarch — Data Architecture & Applied AI",
+  description = `JD Satapathy — Data Architect with ${experienceYears} years of experience in distributed data platforms, real-time pipelines, and cloud-native architectures. Builder of practical AI products.`,
+  currentPath = "/"
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="author" content="JD Satapathy" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content="Designing scalable data systems and building practical AI products." />
+  <meta property="og:type" content="website" />
+  <title>{title}</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Microsoft Clarity Tracking -->
+  <script type="text/javascript" is:inline>
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xv1fhak32i");
+  </script>
+</head>
+<body>
+  <Header currentPath={currentPath} />
+
+  <main style="flex: 1;">
+    <slot />
+  </main>
+
+  <Footer />
+
+  <Chatbot />
+</body>
+</html>

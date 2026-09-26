@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import TagCloud from '../../components/TagCloud.astro';
+import BlogPostCard from '../../components/BlogPostCard.astro';
+
+// Fetch all published blog posts sorted by date descending
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort(
+  (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+
+// Calculate tag counts for the Tag Cloud
+const tagMap: Record<string, number> = {};
+posts.forEach((post) => {
+  post.data.tags.forEach((tag) => {
+    tagMap[tag] = (tagMap[tag] || 0) + 1;
+  });
+});
+
+const tagList = Object.keys(tagMap).map((tagName) => ({
+  name: tagName,
+  count: tagMap[tagName],
+})).sort((a, b) => b.count - a.count);
+---
+
+<BlogLayout title="Insights & Architecture Articles">
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__badge">Wizarch Engineering Journal</div>
+      <h1>Insights, Architecture &amp; Applied AI</h1>
+      <p class="hero__sub">
+        Practical thoughts, tutorials, and deep-dives on distributed data platforms, real-time pipelines, and building intelligent software products.
+      </p>
+    </div>
+  </section>
+
+  <!-- TAG CLOUD & SINGLE-COLUMN FEED CONTAINER -->
+  <section class="blog-feed-section">
+    <div class="container">
+      <!-- Tag Cloud -->
+      <TagCloud tags={tagList} />
+
+      <!-- Single-Column Vertical Feed of Blog Posts -->
+      <div class="blog-feed">
+        {sortedPosts.map((post) => (
+          <BlogPostCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            category={post.data.category}
+            tags={post.data.tags}
+            readTime={post.data.readTime}
+            slug={post.slug}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BlogLayout>

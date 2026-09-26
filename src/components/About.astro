@@ -1,0 +1,28 @@
+---
+import { getExperienceText } from '../utils/experience';
+
+const experienceYears = getExperienceText();
+---
+
+<section id="about" class="about">
+  <div class="container--narrow">
+    <div class="about__avatar">JS</div>
+    <p class="section-label" style="text-align:center;">About Me</p>
+    <h2 class="section-title" style="text-align:center;">JD Satapathy</h2>
+    <p>
+      I'm a Data Architect with {experienceYears} years of experience building and scaling distributed
+      data platforms across manufacturing and finance domains. My work focuses on designing
+      reliable, SLA-driven systems and applying AI to solve practical engineering problems.
+    </p>
+    <div class="about__chips">
+      <span class="chip">Apache Spark</span>
+      <span class="chip">Apache Kafka</span>
+      <span class="chip">AWS</span>
+      <span class="chip">Snowflake</span>
+      <span class="chip">DBT</span>
+      <span class="chip">Airflow</span>
+      <span class="chip">Python</span>
+      <span class="chip">Applied AI</span>
+    </div>
+  </div>
+</section>
