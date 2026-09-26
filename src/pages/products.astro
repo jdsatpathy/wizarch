@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Products — Wizarch" description="AI-powered products built by Jatadhari Satapathy — including RecruitAI, a resume screening and candidate ranking tool." currentPath="/products">
+  <section class="products-hero">
+    <div class="container">
+      <a href="/" id="back-home-link" class="back-link">← Back to Home</a>
+      <p class="section-label">Products</p>
+      <h1 class="section-title" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.03em;">
+        AI-Powered Products
+      </h1>
+      <p style="font-size: 1.0625rem; color: var(--gray-600); max-width: 38rem; margin-top: 0.5rem;">
+        Practical tools built to solve real engineering and hiring challenges at scale.
+      </p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div id="products-grid" class="products-grid">
+      <article class="pc" data-product="recruitai">
+        <div class="pc__info">
+          <div class="pc__header">
+            <span class="pc__icon">🤖</span>
+            <span class="pc__badge">AI · Hiring</span>
+          </div>
+
+          <h2>RecruitAI</h2>
+
+          <p class="pc__desc">
+            AI-powered resume screener that evaluates and ranks candidates against
+            job descriptions with structured scoring, strengths &amp; gaps analysis,
+            and actionable hiring recommendations.
+          </p>
+
+          <ul class="pc__features">
+            <li>Candidate ranking with structured scoring logic</li>
+            <li>Strengths &amp; gap analysis per candidate</li>
+            <li>Role-fit assessment for data engineering roles</li>
+            <li>Exportable PDF reports</li>
+          </ul>
+
+          <div class="pc__actions">
+            <a href="https://recruitai.wizarch.org" id="recruitai-cta-btn" class="btn btn--primary btn--sm"
+              target="_blank" rel="noopener">
+              Try RecruitAI →
+            </a>
+            <a href="https://recruitai.wizarch.org" id="recruitai-sample-btn" class="btn btn--outline btn--sm" target="_blank" rel="noopener">
+              Sample Report
+            </a>
+          </div>
+        </div>
+
+        <div class="pc__snapshot">
+          <img src="/product_snapshots/recruitai.png"
+            alt="RecruitAI — Resume screener interface showing job description upload and candidate ranking"
+            loading="lazy" />
+        </div>
+      </article>
+    </div>
+  </div>
+</Layout>

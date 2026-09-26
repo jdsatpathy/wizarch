@@ -1,0 +1,63 @@
+---
+interface TagCount {
+  name: string;
+  count: number;
+}
+
+interface Props {
+  tags: TagCount[];
+  selectedTag?: string;
+}
+
+const { tags, selectedTag = 'all' } = Astro.props;
+---
+
+<div id="tags" class="tag-cloud-section">
+  <div class="tag-cloud">
+    <span class="tag-cloud__title">Topics:</span>
+    <button
+      class={`tag-pill ${selectedTag === 'all' ? 'active' : ''}`}
+      data-tag="all"
+    >
+      All Posts
+    </button>
+
+    {tags.map((t) => (
+      <button
+        class={`tag-pill ${selectedTag === t.name.toLowerCase() ? 'active' : ''}`}
+        data-tag={t.name.toLowerCase()}
+      >
+        #{t.name} <span class="tag-count">{t.count}</span>
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tagPills = document.querySelectorAll('.tag-pill');
+    const postCards = document.querySelectorAll('.blog-post-card');
+
+    tagPills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        const selectedTag = pill.getAttribute('data-tag');
+
+        // Update active class on pills
+        tagPills.forEach((p) => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        // Filter post cards
+        postCards.forEach((card) => {
+          const cardTags = card.getAttribute('data-tags') || '';
+          const cardTagsArray = cardTags.split(',').map((t) => t.trim().toLowerCase());
+
+          if (selectedTag === 'all' || cardTagsArray.includes(selectedTag)) {
+            (card as HTMLElement).style.display = 'block';
+          } else {
+            (card as HTMLElement).style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>

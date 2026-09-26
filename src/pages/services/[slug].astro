@@ -1,0 +1,94 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import { servicesData, type ServiceItem } from '../../data/services';
+
+export async function getStaticPaths() {
+  const slugs = Object.keys(servicesData);
+  return slugs.map((slug) => ({
+    params: { slug },
+    props: { service: servicesData[slug] },
+  }));
+}
+
+interface Props {
+  service: ServiceItem;
+}
+
+const { service } = Astro.props;
+---
+
+<BlogLayout
+  title={service.title}
+  description={service.tagline}
+>
+  <div class="service-page">
+    <!-- SERVICE HERO -->
+    <section class="hero" style="padding: 4rem 0 3rem; text-align: center;">
+      <div class="container">
+        <div style="text-align: left;">
+          <a href="/" class="article-back" style="margin-bottom: 1.5rem; display: inline-flex;">← Back to Home</a>
+        </div>
+        <div class="hero__badge" style="margin: 0 auto 1.25rem;">
+          {service.icon} {service.badge}
+        </div>
+        <h1 style="margin: 0 auto; max-width: 42rem;">{service.title}</h1>
+        <p class="hero__sub" style="margin-inline: auto;">
+          {service.tagline}
+        </p>
+      </div>
+    </section>
+
+    <!-- SERVICE OVERVIEW & DELIVERABLES -->
+    <section class="article-section" style="padding: 3rem 0 2rem;">
+      <div class="container">
+        <div class="article-body">
+          <h2>Overview</h2>
+          <p>{service.overview}</p>
+
+          <h2>What's Included</h2>
+          <ul>
+            {service.highlights.map((item) => (
+              <li><strong>✓</strong> {item}</li>
+            ))}
+          </ul>
+
+          <h2>Key Deliverables</h2>
+          <div style="display: grid; gap: 1.25rem; margin: 2rem 0;">
+            {service.deliverables.map((d) => (
+              <div style="background: var(--gray-50); border: 1px solid var(--gray-200); padding: 1.25rem 1.5rem; border-radius: var(--radius-lg);">
+                <h3 style="margin: 0 0 0.4rem; font-size: 1.1rem; color: var(--black);">{d.title}</h3>
+                <p style="margin: 0; font-size: 0.925rem; color: var(--gray-600);">{d.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <h2>Who This Is For</h2>
+          <ul>
+            {service.targetAudience.map((audience) => (
+              <li>{audience}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALENDLY BOOKING SECTION -->
+    <section id="book-call" class="cta" style="background: var(--gray-50); border-top: 1px solid var(--gray-200); padding: 4rem 0 5rem;">
+      <div class="container">
+        <p class="section-label" style="text-align: center;">Book Your Session</p>
+        <h2 style="text-align: center; margin-bottom: 0.5rem;">Ready to Get Started?</h2>
+        <p style="text-align: center; margin-bottom: 2.5rem; color: var(--gray-600);">
+          Select a convenient time below to book your 30-minute 1-on-1 session with JD Satapathy.
+        </p>
+
+        <!-- Calendly Inline Widget -->
+        <div 
+          class="calendly-inline-widget" 
+          data-url="https://calendly.com/jdsatpathy/30min" 
+          style="min-width: 320px; height: 700px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md);"
+        ></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      </div>
+    </section>
+  </div>
+</BlogLayout>

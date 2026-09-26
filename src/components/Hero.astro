@@ -1,0 +1,39 @@
+---
+import { getExperienceText } from '../utils/experience';
+
+const experienceYears = getExperienceText();
+---
+
+<section class="hero">
+  <div class="container">
+    <div class="hero__badge">Available for technical advisory</div>
+
+    <h1>Designing Scalable Data Systems &amp; Building Practical AI Products</h1>
+
+    <p class="hero__sub">
+      Data Architect with {experienceYears} years of experience in distributed data platforms,
+      real-time pipelines, and cloud-native architectures. I build systems that scale —
+      and tools that solve real-world problems.
+    </p>
+
+    <div class="hero__actions">
+      <a href="#projects" id="explore-work-btn" class="btn btn--primary">Explore My Work</a>
+      <a href="/products" id="view-products-btn" class="btn btn--outline">View Products →</a>
+    </div>
+
+    <div class="hero__stats">
+      <div class="hero__stat">
+        <strong>{experienceYears}</strong>
+        <span>Years of experience</span>
+      </div>
+      <div class="hero__stat">
+        <strong>50+</strong>
+        <span>Data systems delivered</span>
+      </div>
+      <div class="hero__stat">
+        <strong>100%</strong>
+        <span>SLA adherence track record</span>
+      </div>
+    </div>
+  </div>
+</section>
