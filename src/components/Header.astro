@@ -14,30 +14,30 @@ const isHome = currentPath === '/' || currentPath === '';
   <div class="nav__inner">
     <a href="/" class="nav__logo">Wiz<span>arch</span></a>
     <ul class="nav__links">
-      <li><a href={isHome ? "#what-i-do" : "/#what-i-do"}>Expertise</a></li>
-      <li><a href={isHome ? "#projects" : "/#projects"}>Work</a></li>
-      <li><a href="/blog">Blog</a></li>
+      <li><a href={isHome ? "#what-i-do" : "/#what-i-do"} data-track="nav_expertise">Expertise</a></li>
+      <li><a href={isHome ? "#projects" : "/#projects"} data-track="nav_work">Work</a></li>
+      <li><a href="/blog" data-track="nav_blog">Blog</a></li>
       <li class="nav__dropdown">
         <button class="nav__dropdown-toggle" type="button" aria-expanded="false">
           Services <span class="nav__dropdown-arrow"></span>
         </button>
         <div class="nav__dropdown-menu">
-          <a href="/services/mock-interview" class="nav__dropdown-item">
+          <a href="/services/mock-interview" class="nav__dropdown-item" data-track="service_mock_interview">
             <strong>🎯 Mock Interview</strong>
             <span>Realistic simulations &amp; rubric feedback</span>
           </a>
-          <a href="/services/candidate-handholding" class="nav__dropdown-item">
+          <a href="/services/candidate-handholding" class="nav__dropdown-item" data-track="service_candidate_handholding">
             <strong>🚀 Candidate Handholding</strong>
             <span>1-on-1 career coaching &amp; roadmap</span>
           </a>
-          <a href="/services/resume-review" class="nav__dropdown-item">
+          <a href="/services/resume-review" class="nav__dropdown-item" data-track="service_resume_review">
             <strong>📄 Resume Review</strong>
             <span>Metrics-driven ATS optimization</span>
           </a>
         </div>
       </li>
-      <li><a href={isHome ? "#about" : "/#about"}>About</a></li>
+      <li><a href={isHome ? "#about" : "/#about"} data-track="nav_about">About</a></li>
     </ul>
-    <a href="https://calendly.com/jdsatpathy/30min" class="nav__cta" target="_blank" rel="noopener">Lets Discuss</a>
+    <a href="https://calendly.com/jdsatpathy/30min" class="nav__cta" data-track="contact_calendly" target="_blank" rel="noopener">Lets Discuss</a>
   </div>
 </nav>

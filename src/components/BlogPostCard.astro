@@ -21,6 +21,7 @@ const formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
 <a
   href={`/posts/${slug}`}
   class="blog-post-card"
+  data-track={`article_open_${slug}`}
   data-tags={tags.map(t => t.toLowerCase()).join(',')}
 >
   <div class="blog-post-card__header">

@@ -30,6 +30,7 @@ function initChatbot() {
         container.style.height = '500px';
         container.style.display = 'flex';
         if (minimizeBtn) minimizeBtn.textContent = '−';
+        if (typeof window.wizarchTrack === 'function') window.wizarchTrack('chatbot_open');
     } else {
         // First visit in session (no storedState): remain hidden until 2 sec timer
         container.style.display = 'none';
@@ -37,6 +38,7 @@ function initChatbot() {
             if (sessionStorage.getItem('wizarch_chat_state') === null) {
                 container.style.display = 'flex';
                 sessionStorage.setItem('wizarch_chat_state', 'opened');
+                if (typeof window.wizarchTrack === 'function') window.wizarchTrack('chatbot_open');
             }
         }, 2000);
     }
@@ -64,6 +66,7 @@ function initChatbot() {
             container.style.height = '500px';
             if (minimizeBtn) minimizeBtn.textContent = '−';
             sessionStorage.setItem('wizarch_chat_state', 'opened');
+            if (typeof window.wizarchTrack === 'function') window.wizarchTrack('chatbot_open');
         } else {
             // Minimize widget
             chatBody.style.display = 'none';
@@ -114,6 +117,8 @@ function initChatbot() {
 
         const query = input.value.trim();
         if (!query) return;
+
+        if (typeof window.wizarchTrack === 'function') window.wizarchTrack('chatbot_message_sent');
 
         appendMessage(query, true);
         input.value = '';
